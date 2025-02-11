@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 
 app.use(
     cors({
-        origin: ["http://localhost:3000"],
+        origin: ["http://localhost:3000", "https://tonmoy-portfolio-client.vercel.app"],
         credentials: true,
     })
 );
@@ -149,7 +149,11 @@ async function run() {
         });
 
 
-
+        app.post("/blogPost", async (req, res) => {
+            const blog = req.body;
+            const result = await blogsCollection.insertOne(blog);
+            res.send(result);
+        });
 
 
 
